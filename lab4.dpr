@@ -1,6 +1,11 @@
 program lab4;
    {$APPTYPE CONSOLE}
 const n=10; maxNum=20;
+resourcestring
+  PrimArr = 'Primary array: ';
+  EdArr = 'Edited array: ';
+  Del = 'Deleted';
+  El = 'elements';
 type TArray = array[1..N] of Integer;
 var MainArray, EditedArray: TArray;
 i,j,k, count, val, maxsize:Integer;
@@ -71,12 +76,12 @@ begin
 end;
 
 procedure getMainArray(arr: TArray; size,k: integer);
-{ ==============================
-The function recursively remove
-repeated value of array to obtain
-an ascending array with minimal
-deleted elements
-  ==============================}
+{ =================================
+  The function recursively remove
+  repeated value of array to obtain
+  an ascending array with minimal
+  deleted elements
+  =================================}
 var TempArr: TArray;
 i,j,m,p:Integer;
 begin
@@ -126,7 +131,7 @@ begin
   maxsize:=0;
   Randomize;
   i:=1;
-  Writeln('Primary array:');
+  Writeln(PrimArr);
   while(i <= N) do
   begin
     val:=RANDOM(maxNum)-10;
@@ -139,14 +144,14 @@ begin
   end;
   writeln;
   getMainArray(MainArray, N, k);
-  Writeln('Edited array: ');
+  Writeln(EdArr);
   for j:=1 to n do
   begin
     if(EditedArray[j] < maxNum) then // Array output with missing elements
       write(EditedArray[j]:4);
   end;
   writeln;
-  Writeln('Deleted ', n-maxsize, ' elements');
+  Writeln(Del,' ', n-maxsize,' ', el);
   Readln;
 end.
 
