@@ -21,11 +21,15 @@ function checkRepeatValue(arr:TArray;value,num:integer):Boolean;
 var isRepeat:Boolean; k:byte;
 begin
   isRepeat:=false;
-  for k:=1 to (num-1) do
+  k:=1;
+  while(k < num) do
   begin
     if (arr[k] = value) then
-      isRepeat:=true
-
+    begin
+      isRepeat:=true;
+      k:=num;
+    end;
+    Inc(k);
   end;
   checkRepeatValue:=isRepeat;
 end;
@@ -42,7 +46,7 @@ begin
   k:=0;
   isIncr:=True;
   NextArrElem:=arr[2];
-  while ((i < size)) do
+  while (i < size) do
   begin
     if(arr[i] < MaxNum) then
     begin
@@ -55,10 +59,12 @@ begin
           j:=size+1;
         end
         else
-        if (j >= size) then
         begin
-          nextarrelem:=arr[size];
-          j:=222;
+          if (j >= size) then
+          begin
+            nextarrelem:=arr[size];
+            j:=size;
+          end;
         end;
         Inc(j);
       end;
@@ -101,7 +107,7 @@ begin
     Inc(k);
     if (k <= size) then
     begin
-      getMainArray(TempArr, size, k+1)
+      getMainArray(TempArr, size, k)
     end
     else
     begin
@@ -116,11 +122,11 @@ begin
             end;
           end;
           if (count > maxsize) then
-            begin
-              maxsize:=count;
-              for p:=1 to size do
-                EditedArray[p] := TempArr[p];
-            end;
+          begin
+            maxsize:=count;
+            for p:=1 to size do
+              EditedArray[p] := TempArr[p];
+          end;
 
         end;
     end;
@@ -128,7 +134,7 @@ begin
 end;
 
 begin
-  maxsize:=0;
+  maxSize:=0;
   Randomize;
   i:=1;
   Writeln(PrimArr);
