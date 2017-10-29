@@ -6,6 +6,13 @@ var MainArray, EditedArray: TArray;
 i,j,k, count, val, maxsize:Integer;
 
 function checkRepeatValue(arr:TArray;value,num:integer):Boolean;
+{ ==========================
+  The function checks if
+  the received value is
+  in the arr array.
+  In the case of repetition,
+  returns true
+  ========================== }
 var isRepeat:Boolean; k:byte;
 begin
   isRepeat:=false;
@@ -19,6 +26,10 @@ begin
 end;
 
 function isIncreases(arr: TArray; size: Integer):boolean;
+{ =============================
+  The function checks to see if
+  the items of array are sorted
+  =============================}
 var i,j, NextArrElem: Integer;
 isIncr: boolean;
 begin
@@ -60,6 +71,12 @@ begin
 end;
 
 procedure getMainArray(arr: TArray; size,k: integer);
+{ ==============================
+The function recursively remove
+repeated value of array to obtain
+an ascending array with minimal
+deleted elements
+  ==============================}
 var TempArr: TArray;
 i,j,m,p:Integer;
 begin
@@ -67,25 +84,18 @@ begin
   begin
     for j:=1 to size do
     begin
-      {Writeln('j ', arr[j]);
-      writeln('i ', arr[i]);}
       if (((arr[j] < arr [i]) and (j > i))
           or
          ((arr[j] > arr [i]) and (j < i)))
       then
-        TempArr[j] := maxNum+1
+        TempArr[j] := maxNum+1 // To delete an item,
+        // a value greater than the maximum value
       else
         TempArr[j]:=arr[j];
     end;
-
-    //Writeln;
     Inc(k);
-    //writeln(k);
-    {if (not(isIncreases(TempArr,size))) then}
-    //not(isIncreases(TempArr,N))
     if (k <= size) then
     begin
-      //Writeln('sss');
       getMainArray(TempArr, size, k+1)
     end
     else
@@ -95,13 +105,11 @@ begin
           count:=0;
           for m:=1 to size do
           begin
-            if(TempArr[m] < maxNum) then
+            if(TempArr[m] < maxNum) then // Skipping deleted items
             begin
-              //write(TempArr[m]:4);
               Inc(count);
             end;
           end;
-          //write('  - ', count,'/',maxsize);
           if (count > maxsize) then
             begin
               maxsize:=count;
@@ -130,17 +138,11 @@ begin
     end;
   end;
   writeln;
-  //MainArray[2] := maxNum+1;
-  {for j:=1 to n do
-  begin
-    if(MainArray[j] < maxNum) then
-      write(MainArray[j]:4);
-  end; }
   getMainArray(MainArray, N, k);
   Writeln('Edited array: ');
   for j:=1 to n do
   begin
-    if(EditedArray[j] < maxNum) then
+    if(EditedArray[j] < maxNum) then // Array output with missing elements
       write(EditedArray[j]:4);
   end;
   writeln;
