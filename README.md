@@ -13,7 +13,7 @@ Lab №4. Working with one-dimensional arrays
 ![Algorithm scheme](https://github.com/N1ghtF1re/lab4/blob/master/algorithm_scheme.jpg)
 
 **Code:**
-```
+``` pascal
 program lab4;
    {$APPTYPE CONSOLE}
 const n=10; maxNum=20;
